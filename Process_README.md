@@ -62,7 +62,7 @@ Created directory within scripts for sandbox scripts
 
                 - current format "\w"
 
-                - update as "Treatment_\w"
+                - update as "Treatment\w"
 
             - list[3] = *
 
@@ -84,4 +84,8 @@ Created directory within scripts for sandbox scripts
 
                 - would need to split again and remove dada.  Possible, but easier to remove and reassign ".fastq.gz" as string -> remove
 
-            - "new_name = day + '_' + sample + '_' + treatment  + '_' + diet + '_' + list[5] + '.fastq.gz'"
+            - "new_name = day + '_' + sample + '_' + diet  + '_' + treatment + '_' + list[5] + '.fastq.gz'"
+
+Converted array to string elements -> add leading 0s so that all strings are 3 characters long
+
+    - wrote `if` loop for dietary assignment into python_test -> updated new_name final product
