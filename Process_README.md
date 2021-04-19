@@ -105,3 +105,5 @@ Updated Overview.md with recommendations for improvement from "Final Project: Pr
         Style will be Month.Date.Year
 
             - **clarify if this should be shifted for best practices**
+
+Created YAML file for SLURM profile and updated it with basic options and resources as seen in Week 13 exercises (4.19.21)

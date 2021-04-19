@@ -52,6 +52,8 @@
 
 - Create YAML for SLURM profile
 
+    *Done: modify if different resources needed*
+
 - Create Snakemake for running scripts --> direct log outputs too!
 
 - Write and thoroughly comment cutadapt script --> direct outputs appropriately
