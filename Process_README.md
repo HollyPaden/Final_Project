@@ -89,3 +89,11 @@ Created directory within scripts for sandbox scripts
 Converted array to string elements -> add leading 0s so that all strings are 3 characters long
 
     - wrote `if` loop for dietary assignment into python_test -> updated new_name final product
+
+Created directories to divide Python from Bash scripts and separated "sandbox" from "finalized" scripts
+
+Created finalized python renaming script and completely commented and cleaned from what was in the sandbox
+
+Created directories for slurm profile and snakemake workflow
+
+Created subdirectories in output for renaming, trimming, snakemake logs, and cutadapt output
