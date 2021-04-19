@@ -1,0 +1,71 @@
+"""
+A dummy RNAseq workflow with FASTQ files as input and a count table as output.  
+"""
+
+SAMPLES = glob_wildcards("data/{smp}.fastq").smp
+reference_genome = "metadata/ref.fa"
+
+localrules: all
+
+rule all:
+    """
+    This is a "pseudo-rule" meant to trigger the execution of the full workflow. 
+    """
+    input:
+        "res/count_table.txt",
+        expand("res/{smp}.fastqc.html", smp=SAMPLES)
+
+rule fastqc:
+    """
+    Writes raw FASTQ file to fastqc.html
+    """
+    input:
+        "data/{smp}.fastq",
+    output:
+        "res/{smp}.fastqc.html",
+    log: 
+        "log/fastqc/{smp}.log",
+    shell:
+        "scripts/fastqc.sh {input} res &>{log}"
+        
+rule trim:
+    """
+    Trim the FASTQ files.
+    """
+    input:
+        "data/{smp}.fastq",
+    output:
+        "res/{smp}_trim.fastq",
+    log:
+        "log/trim/{smp}.log",
+    shell:
+        "scripts/trim.sh {input} > {output} 2>{log}"
+
+rule map:
+    """
+    Map the trimmed FASTQ files to a reference genome.
+    """
+    input:
+        fastq_file="res/{smp}_trim.fastq",
+        ref=reference_genome,
+    output:
+        "res/{smp}.bam",
+    log:
+        "log/map/{smp}.log",
+    threads: 4,
+    resources: time_min=120
+    shell:
+        "scripts/map.sh {input.fastq_file} {input.ref} > {output} 2>{log}"
+
+rule count:
+    """
+    From the BAM files, create a gene count table.
+    """
+    input:
+        expand("res/{smp}.bam", smp=SAMPLES),
+    output:
+        "res/count_table.txt",
+    log:
+        "log/count/count.log",
+    shell:
+        "scripts/count.sh {input} > {output} 2>{log}"

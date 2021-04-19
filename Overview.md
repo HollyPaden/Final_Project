@@ -16,44 +16,46 @@
 
 *Name Cleanup --> Python script*
 
-- Rename deviated D35 files
+- ~~Rename deviated D35 files~~
 
-- Rename T-1 files?
+- ~~Rename T-1 files?~~
 
-- Rename D6 to D06
+- Rename D6 to D006
 
-- Rename null?
-
-- Recode "chemotherapy" code "C" to "T" for "treatment
+- ~~Rename null?~~
 
 - Code for diet treatment "A", "B", "C", or "D"
 
 - Separate sample # from rest of name (will begin on 4th character)
 
-- Fully rename into format "Day##_Sample#_DietA/B/C/D_TreatmentT/V/NA"
+- Fully rename into format "Day##_Sample#_DietA/B/C/D_TreatmentC/V/NA"
 
 **To-do list**
 
-- Determine best way to rename files and what is too much (if anything)
+- ~~Determine best way to rename files and what is too much (if anything)~~
 
-    - Figure out if diet coding is feasible --> how
+    - ~~Figure out if diet coding is feasible --> how~~
 
     *Update: general renaming complete. Now determine best way to assign and store in appropriate output subdirectory*
 
-- Decide if files should stay zipped or be unzipped
+- ~~Decide if files should stay zipped or be unzipped~~
 
     *Done: will stay zipped*
 
-- Write scripts --> test on one --> test on multiple
+- ~~Write scripts --> test on one --> test on multiple~~
 
     *Update: renaming script functional, finalized, and commented*
 
 - Import fastq.gz files to OSC
 
-- Create YAML for SLURM profile
+- ~~Create YAML for SLURM profile~~
 
     *Done: modify if different resources needed*
 
 - Create Snakemake for running scripts --> direct log outputs too!
+
+    *Update: begun, but still needs clarification of how to direct cutadapt output and if this is the correct way to call a python script*
+
+    *Consider if threads need to be used here too*
 
 - Write and thoroughly comment cutadapt script --> direct outputs appropriately
