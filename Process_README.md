@@ -90,10 +90,18 @@ Converted array to string elements -> add leading 0s so that all strings are 3 c
 
     - wrote `if` loop for dietary assignment into python_test -> updated new_name final product
 
-Created directories to divide Python from Bash scripts and separated "sandbox" from "finalized" scripts
+Created directories to divide Python from Bash scripts and separated "sandbox" from "finalized" scripts (4.19.21)
 
-Created finalized python renaming script and completely commented and cleaned from what was in the sandbox
+Created finalized python renaming script and completely commented and cleaned from what was in the sandbox (4.19.21)
 
-Created directories for slurm profile and snakemake workflow
+Created directories for slurm profile and snakemake workflow (4.19.21)
 
-Created subdirectories in output for renaming, trimming, snakemake logs, and cutadapt output
+Created subdirectories in output for renaming, trimming, snakemake logs, and cutadapt output (4.19.21)
+
+Updated Overview.md with recommendations for improvement from "Final Project: Progress Report" (4.19.21)
+
+    - note: dates for Process_README will be added from this point forward, as recommended in Progress Report (4.19.21)
+
+        Style will be Month.Date.Year
+
+            - **clarify if this should be shifted for best practices**
