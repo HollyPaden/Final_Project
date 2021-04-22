@@ -2,7 +2,10 @@
 A basic workflow with FASTQ files as input and trimmed files and cutadapt log as output
 """
 
-SAMPLES = glob_wildcards("../input_dir/{smp}.fastq.gz").smp
+SAMPLES = glob_wildcards("input_dir/{smp}.fastq.gz").smp
+
+forward_primer="AYTGGGYDTAAAGNG"
+reverse_primer="TACNVGGGTATCTAATCC" 
 
 localrules: all
 
@@ -20,24 +23,24 @@ rule rename:
     input:
         "input_dir/{smp}.fastq.gz",
     output:
-        "output_dir/renamed_fastq/{smp}.fastq.gz",
+        lambda wildcards: glob("output_dir/renamed_fastq/{smp}.fastq.gz".format(smp=wildcards.smp)),
     log:
         "output_dir/log/rename/{smp}.log",
     shell:
-        "python ../scripts/finalized/file_renaming.py {input} > {output} &>{log}"
+        "python scripts/finalized/file_renaming.py {input} &>{log}"
 
 rule cutadapt:
     """
     Runs cutadapt on fastq.gz to trim and output cutadapt dialog
     """
     input:
-        "output_dir/renamed_fastq/{smp}.fastq.gz",
+        lambda wildcards: glob("output_dir/renamed_fastq/{smp}.fastq.gz".format(smp=wildcards.smp)),
     output:
         "output_dir/trimmed_fastq/{smp}.fastq.gz",
     log:
-        "output_dir/log/cutadapt/{smp}.log".
+        "output_dir/log/cutadapt/{smp}.log",
     shell:
-        "../scripts/finalized/cutadapt.sh {input} > {output} 2>{log}"
+        "scripts/finalized/cutadapt.sh {input} {output} {forward_primer} {reverse_primer} &>{log}"
 
 
 

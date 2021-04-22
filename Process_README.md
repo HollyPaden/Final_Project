@@ -119,3 +119,11 @@ Cut down superfluous parts of Cutadapt script to only include basic functions an
 Tested Cutadapt script until successful --> duplicate final product to scripts/finalized (4.22.21)
 
 Update Process_README and Overview appropriately (4.22.21)
+
+Added .gitignore to project directory so that input and output directories would be ignored completely (4.22.21)
+
+Updated renaming script to copy file and assign newname in appropriate direcotry (4.22.21)
+
+Modified snakefile to take all arguments and run rules appropriately...
+
+    *Note: work in progress.  Some issues with globbing twice within a rule* (4.22.21)

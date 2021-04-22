@@ -11,8 +11,8 @@ date
 
 input="$1"
 output="$2"
-forward_primer="AYTGGGYDTAAAGNG"
-reverse_primer="TACNVGGGTATCTAATCC"  
+forward_primer="$3"
+reverse_primer="$4"  
 
 #Message to indicate the script has initiated
 echo "Script running...please wait"
@@ -41,14 +41,17 @@ trimmed_fastq_r=$(basename "$reverse_fastq" .fastq.gz)_trimmed.fastq.gz
 echo "Sequence trim completed...calling Cutadapt"
 
 #Create output for cutadapt readout
-readout=$(basename "$input" .fastq.gz)_cutadapt_readout.txt > "$output"/"$readout"
+# Note: this is optional if running the script alone
+# log writing is handled by Snakemake in this case
+####readout=$(basename "$input" .fastq.gz)_cutadapt_readout.txt > "$output"/"$readout"
 
 #Call Cutadapt
 cutadapt -a "$forward_primer"..."$rp_complement" \
     -A "$reverse_primer"..."$fp_complement" \
     --discard-untrimmed --pair-filter=any \
-    -o "$output"/"$trimmed_fastq_f" -p "$output"/"$trimmed_fastq_r" "$input" "$reverse_fastq" \
-    > "$output"/"$readout"
+    -o "$output"/"$trimmed_fastq_f" -p "$output"/"$trimmed_fastq_r" "$input" "$reverse_fastq" 
+# Add this line if running script without Snakemake to save log
+#####    > "$output"/"$readout"
 
 #Report completion of Cutadapt run
 echo "Cutadapt complete at..."
