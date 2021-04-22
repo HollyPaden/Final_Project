@@ -24,7 +24,7 @@ rule rename:
     log:
         "output_dir/log/rename/{smp}.log",
     shell:
-        "scripts/finalized/file_renaming.py {input} > {output} 2>{log}"
+        "python ../scripts/finalized/file_renaming.py {input} > {output} &>{log}"
 
 rule cutadapt:
     """
@@ -37,4 +37,9 @@ rule cutadapt:
     log:
         "output_dir/log/cutadapt/{smp}.log".
     shell:
-        "scripts/finalized/cutadapt.sh {input} > {output} 2>{log}"
+        "../scripts/finalized/cutadapt.sh {input} > {output} 2>{log}"
+
+
+
+
+        

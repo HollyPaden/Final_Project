@@ -5,10 +5,13 @@ import os.rename
 import re
 import numpy as np
 #%%
-# generate the diet array in a 15 row by 8 column pattern with 120 numbers beginning at 1
+# generate the diet array in a 15 row by 8 column pattern
+# with 120 numbers beginning at 1
 diet_array = np.arange(1, 121).reshape((15, 8))
 diet_array
-#%% convert array to string so that floating zeros can be used to make all numbers 3 digits long
+#%%
+# convert array to string so that floating zeros
+# can be used to make all numbers 3 digits long
 diet_array = diet_array.astype(str)
 np.char.zfill(diet_array, 3)
 #%%
@@ -31,24 +34,28 @@ path = '../input_dir/D35_006_C_S74_L001_R1_001.fastq.gz'
 basename = os.path.basename(path)
 print(basename)
 #%%
-# convert basename to a string and then split into a list by the delimiter "_"
+# convert basename to a string and then split into a list
+# by the delimiter "_"
 seq1_str = str(basename)
 seq1_str
 # %%
 seq_list = seq1_str.split("_")
 seq_list
 #%%
-# assign "day" as the first item in the list, then insert "ay" between "D" and "##"
+# assign "day" as the first item in the list, then insert
+# "ay" between "D" and "##"
 day = seq_list[0]
 #%%
 day = day[:1] + "ay" + day[1:]
 day
 #%%
-# assign "sample" first and then use it to determine "diet" before further editing "sample"
+# assign "sample" first and then use it to determine "diet"
+# before further editing "sample"
 sample = seq_list[1]
 sample
 #%%
-# use the "diet" array and an `if` loop to determine diet based on sample ###
+# use the "diet" array and an `if` loop to determine diet
+# based on sample ###
 diet = seq_list[3]
 
 if sample in A:
@@ -66,7 +73,8 @@ diet
 sample = "Sample" + sample[:]
 sample
 #%%
-# assign "treatment" to the third item in the list and add the word "Treatment" in front of it
+# assign "treatment" to the third item in the list and add
+# the word "Treatment" in front of it
 treatment = seq_list[2]
 #%%
 treatment = "Treatment" + treatment[:]
