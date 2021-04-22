@@ -1,5 +1,6 @@
 #%%
 import os.path
+import os.rename
 
 # %%
 import re
@@ -99,3 +100,7 @@ treatment
 new_name = day + '_' + sample + '_' + diet  + '_' + treatment + '_' + seq_list[5] + '.fastq.gz'
 new_name
 # %%
+#os.rename('file1','file2')
+#os.path.dirname(path1) + 'xx.file'
+#shutil.copy('file1', file2')
+#put new file in new directory
