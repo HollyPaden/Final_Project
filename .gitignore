@@ -1,0 +1,3 @@
+*.fastq.gz
+output_dir/
+input_dir/

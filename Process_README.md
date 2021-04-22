@@ -109,3 +109,13 @@ Updated Overview.md with recommendations for improvement from "Final Project: Pr
 Created YAML file for SLURM profile and updated it with basic options and resources as seen in Week 13 exercises (4.19.21)
 
 Created snakemake file and added an "all" rule, as well as two main rules: "rename" and "cutadapt" (4.19.21)
+
+Minor changes made to SLURM profile, Snakefile, and reference script for readability in screen captures for PPT (4.21.21)
+
+Removed SLURM directives and changed primers from reference to sandbox version of Cutadapt script (4.22.21)
+
+Cut down superfluous parts of Cutadapt script to only include basic functions and explanatory echoes (4.22.21)
+
+Tested Cutadapt script until successful --> duplicate final product to scripts/finalized (4.22.21)
+
+Update Process_README and Overview appropriately (4.22.21)

@@ -46,6 +46,10 @@
 
     *Update: renaming script functional, finalized, and commented*
 
+    *Update: cutadapt script funcitonal, finalized, and commented*
+
+        **Note: must adapt to take input/output arguments from Snakefile**
+
 - Import fastq.gz files to OSC
 
 - ~~Create YAML for SLURM profile~~
@@ -59,3 +63,5 @@
     *Consider if threads need to be used here too*
 
 - Write and thoroughly comment cutadapt script --> direct outputs appropriately
+
+    *Update: begun and script is functional.  Need to clarify how to call input and output from outside the script.  Need to confirm ability to load conda env from within the script*
