@@ -119,3 +119,33 @@ Cut down superfluous parts of Cutadapt script to only include basic functions an
 Tested Cutadapt script until successful --> duplicate final product to scripts/finalized (4.22.21)
 
 Update Process_README and Overview appropriately (4.22.21)
+
+Added .gitignore to project directory so that input and output directories would be ignored completely (4.22.21)
+
+Updated renaming script to copy file and assign newname in appropriate direcotry (4.22.21)
+
+Modified snakefile to take all arguments and run rules appropriately...
+
+    *Note: work in progress.  Some issues with globbing twice within a rule* (4.22.21)
+
+Cleaned cutadapt.sh to make it able to call the cutadapt environment within the script (4.28.21)
+
+Added cutadapt environment as YAML file to its own folder (4.28.21)
+
+Modified template of rename_all.sh wrapper to take in appropriate arguments and python renaming script (4.28.21)
+
+Fixed minor error in renaming script, cleaned up comments (4.28.21)
+
+Snakefile updated with comments and checkpoint function for wildcard expansion from template written by Jelmer Poelstra (4.28.21)
+
+**GENERAL**
+
+`snakemake -j1 -p -r --use-conda` will be the directive to run so that cutadapt can operate within the conda environment within the ipy-env needed to run snakemake
+
+    **Note** don't forget to `rm -r output_dir/renamed_fastq/` each time you run snakemake, since the wrapper script creates the directory
+
+`echo ". /apps/python/3.6-conda5.2/etc/profile.d/conda.sh" >> ~/.bashrc` needed to be written so that conda is automatically loaded when bash is loaded
+
+Don't forget to activate both the python environment and ipy-env prior to initiating snakemake
+
+    `module load python/3.6-conda5.2` followed by `source activate ipy-env` to load environment to run snakemake
