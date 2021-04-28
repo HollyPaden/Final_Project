@@ -2,6 +2,8 @@
 A basic workflow with FASTQ files as input and trimmed files and cutadapt log as output
 """
 
+from os.path import join
+
 SAMPLES = glob_wildcards("input_dir/{smp}.fastq.gz").smp
 
 forward_primer="AYTGGGYDTAAAGNG"
@@ -9,40 +11,50 @@ reverse_primer="TACNVGGGTATCTAATCC"
 
 localrules: all
 
+# This function will be run after the checkpoint rule, so the new (post-renaming) file names can be globbed: 
+def get_new_filenames(wildcards):
+    # This is syntax that gets the output of "checkpoint rename":
+    checkpoint_output = checkpoints.rename.get(**wildcards).output[0]    
+    
+    file_names = expand(
+        "output_dir/trimmed_fastq/{smp}_R1_trimmed.fastq.gz",
+        smp = glob_wildcards(join(checkpoint_output, "{smp}_R1.fastq.gz")).smp
+        )
+    return file_names
+
 rule all:
     """
     First rule, used to prompt full workflow execution
     """
     input:
-        expand("output_dir/trimmed_fastq/{smp}.fastq.gz", smp=SAMPLES)
+        get_new_filenames, # The input is the renamed set of files - this refers to the function above
 
-rule rename:
+# This is now "checkpoint rename" instead of "rule rename": 
+checkpoint rename:
     """
     Renames fastq files in the format 'Day##_Sample###_DietA/B/C/D_TreatmentC/V/NA_R1/2.fastq.gz'
     """
     input:
-        "input_dir/{smp}.fastq.gz",
+        'input_dir/'
     output:
-        lambda wildcards: glob("output_dir/renamed_fastq/{smp}.fastq.gz".format(smp=wildcards.smp)),
+        directory("output_dir/renamed_fastq/")
     log:
-        "output_dir/log/rename/{smp}.log",
+        "output_dir/log/rename/rename.log",
     shell:
-        "python scripts/finalized/file_renaming.py {input} &>{log}"
+        "scripts/sandbox/rename_all.sh {input} {output} &>{log}"
 
 rule cutadapt:
     """
     Runs cutadapt on fastq.gz to trim and output cutadapt dialog
     """
     input:
-        lambda wildcards: glob("output_dir/renamed_fastq/{smp}.fastq.gz".format(smp=wildcards.smp)),
+        "output_dir/renamed_fastq/{smp}_R1.fastq.gz",
     output:
-        "output_dir/trimmed_fastq/{smp}.fastq.gz",
+        "output_dir/trimmed_fastq/{smp}_R1_trimmed.fastq.gz",
     log:
-        "output_dir/log/cutadapt/{smp}.log",
+        "output_dir/log/cutadapt/{smp}_R1.log",
     shell:
-        "scripts/finalized/cutadapt.sh {input} {output} {forward_primer} {reverse_primer} &>{log}"
-
-
+        "scripts/finalized/cutadapt.sh {input} output_dir/trimmed_fastq {forward_primer} {reverse_primer} &>{log}"
 
 
         
