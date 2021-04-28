@@ -38,6 +38,8 @@
 
     *Update: general renaming complete. Now determine best way to assign and store in appropriate output subdirectory*
 
+    *Done: renaming fully complete, using wrapper script and python renaming script*
+
 - ~~Decide if files should stay zipped or be unzipped~~
 
     *Done: will stay zipped*
@@ -48,20 +50,30 @@
 
     *Update: cutadapt script funcitonal, finalized, and commented*
 
-        **Note: must adapt to take input/output arguments from Snakefile**
+        ~~**Note: must adapt to take input/output arguments from Snakefile**~~
 
-- Import fastq.gz files to OSC
+    *Done: both scripts integrated with Snakefile*
+
+- ~Import fastq.gz files to OSC~
 
 - ~~Create YAML for SLURM profile~~
 
     *Done: modify if different resources needed*
 
+    *Bonus: made YAML for cutadapt environment as well*
+
 - Create Snakemake for running scripts --> direct log outputs too!
 
     *Update: begun, but still needs clarification of how to direct cutadapt output and if this is the correct way to call a python script*
 
-    *Consider if threads need to be used here too*
+    ~~*Consider if threads need to be used here too*~~
+
+        Only if there were more files, but not necessary in this instance
+
+    *Done: log outputs appropriately directed and Snakefile properly integrated*
 
 - Write and thoroughly comment cutadapt script --> direct outputs appropriately
 
     *Update: begun and script is functional.  Need to clarify how to call input and output from outside the script.  Need to confirm ability to load conda env from within the script*
+
+    *Done: integrated with Snakefile for calling input, output, and primer sequences.  Conda env loaded outside the script, cutadapt env loaded within the script*
