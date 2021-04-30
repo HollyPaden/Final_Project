@@ -27,6 +27,16 @@
 
         `source activate ipy-env`
 
+    *Note* if this environment has not already been created, use the following commands to create the environment:
+
+        `module load python/3.6-conda5.2
+    
+        conda create -y -n ipy-env -c conda-forge python=3.9
+    
+        source activate ipy-env
+    
+        conda install -y -c conda-forge -y notebook pylint`
+
     *Note* additonal threads can be requested for a higher volume of files for processing.  Can also modify the SLURM profile by finding the file in the final_project/slurm_profile directory
 
 - Please ignore the directory final_project/References, as those scripts were used as templates/springboards for building the final scripts, and are not necessarily linked to the final product

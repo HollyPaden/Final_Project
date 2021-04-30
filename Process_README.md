@@ -149,3 +149,9 @@ Snakefile updated with comments and checkpoint function for wildcard expansion f
 Don't forget to activate both the python environment and ipy-env prior to initiating snakemake
 
     `module load python/3.6-conda5.2` followed by `source activate ipy-env` to load environment to run snakemake
+
+Included directions on how to create ipy-env for any users who do not already have it enabled (see Final_Documentation_README.md) (4.29.21)
+
+Moved SLURM profile directory inside general workflow directory (4.29.21)
+
+Updated file_renaming.py to print variables while renaming to better track process and troubleshoot should errors arise (4.29.21)
